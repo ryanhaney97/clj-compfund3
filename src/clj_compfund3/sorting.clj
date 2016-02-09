@@ -2,7 +2,7 @@
   (:require [clojure.string :as string])
   (:import [java.io DataInputStream FileInputStream]))
 
-;The find-min and insertion-sort functions are part of an implementation of an Insertion sort.
+;The find-min and selection-sort functions are part of an implementation of an Selection sort.
 ;As such, they aren't actually necessary for the problem specified. I just wanted to try implementing it.
 
 (defn find-min [v start-index]
@@ -15,7 +15,7 @@
                              index
                              smallest))))))
 
-(defn insertion-sort [v]
+(defn selection-sort [v]
   (let [indexes (range (dec (count v)))
         per-iteration (fn [current-v index]
                         (let [compare-val (get current-v index)
