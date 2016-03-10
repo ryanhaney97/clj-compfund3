@@ -28,6 +28,18 @@
                             current-v)))]
     (reduce per-iteration v indexes)))
 
+;The sort-val and insertion-sort functions are part of an implementation of an Insertion sort.
+;As such, they aren't actually necessary for the problem specified. I just wanted to try implementing it.
+
+(defn sort-val [v value]
+  (if (> (compare value (last v)) 0)
+    (conj v value)
+    (let [split (map (partial into []) (split-with #(> (compare value %1) 0) v))]
+      (apply conj (first split) value (last split)))))
+
+(defn insertion-sort [v]
+  (reduce sort-val [(first v)] (rest v)))
+
 ;The get-partitions and quicksort functions are an implementation of a Quicksort.
 ;This is what the program actually uses in order to sort the vector provided.
 ;Unfortunately, since a quicksort requires you to recursively call on 2 items,
@@ -123,7 +135,7 @@
 ;This data is read into a database and quicksorted, before being printed out to the console.
 ;It then calls prompt-search to ask the user if they want to search the database.
 
-(defn sorting-main []
+(defn sorting-main [& args]
   (let [data (get-binary-input "./names.dat")
         sorted-data (quicksort data)]
     (println (str "Data:\n\n[" (apply str (interpose ", " (map string/capitalize sorted-data))) "]\n"))

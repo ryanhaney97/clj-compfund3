@@ -45,5 +45,5 @@
         payroll (Payroll. employee-name id hours rate)]
     (check-payroll payroll)))
 
-(defn payroll-main []
+(defn payroll-main [& args]
   (println (get-input)))

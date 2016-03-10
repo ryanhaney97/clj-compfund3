@@ -2,10 +2,18 @@
   (:require
    [clj-compfund3.payroll :refer [payroll-main]]
    [clj-compfund3.palindrome :refer [palindrome-main]]
-   [clj-compfund3.sorting :refer [sorting-main]])
+   [clj-compfund3.sorting :refer [sorting-main]]
+   [clj-compfund3.num-analyzer :refer [num-main]]
+   [clj-compfund3.linked-lists :refer [llist-main]])
   (:gen-class))
 
 (defn -main [& args]
-  ;(payroll-main)
-  ;(apply palindrome-main args)
-  (sorting-main))
+  (let [mains [payroll-main
+               palindrome-main
+               sorting-main
+               num-main
+               llist-main]
+        choosen-main (if (empty? args)
+                       (last mains)
+                       (get mains (dec (Integer/parseInt (first args)))))]
+    (apply choosen-main (rest args))))
