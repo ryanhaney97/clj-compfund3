@@ -6,7 +6,8 @@
    [clj-compfund3.num-analyzer :refer [num-main]]
    [clj-compfund3.linked-lists :refer [llist-main]]
    [clj-compfund3.stacks-and-queues :refer [stacks-and-queues-main]]
-   [clj-compfund3.tree-states :refer [tree-states-main]])
+   [clj-compfund3.tree-states :refer [tree-states-main]]
+   [clj-compfund3.employee-map :refer [employee-map-main]])
   (:gen-class))
 
 (defn -main [& args]
@@ -16,8 +17,9 @@
                num-main
                llist-main
                stacks-and-queues-main
-               tree-states-main]
-        choosen-main (if (empty? args)
-                       (last mains)
-                       (get mains (dec (Integer/parseInt (first args)))))]
-    (apply choosen-main (rest args))))
+               tree-states-main
+               employee-map-main]
+        chosen-main (if (empty? args)
+                      (last mains)
+                      (get mains (dec (Integer/parseInt (first args)))))]
+    (apply chosen-main (rest args))))
